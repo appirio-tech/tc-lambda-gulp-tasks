@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/neyric/aws-lambda-gulp-tasks.git"
+    "url": "https://github.com/appirio-tech/tc-aws-lambda-gulp-tasks.git"
   },
   "keywords": [
     "aws",

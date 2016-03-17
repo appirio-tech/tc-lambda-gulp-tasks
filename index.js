@@ -1,10 +1,10 @@
-
 var gulp = require('gulp'),
-    zip = require('gulp-zip'),
-    del = require('del'),
-    install = require('gulp-install'),
-    awsLambda = require('node-aws-lambda'),
-    path = require('path');
+  zip = require('gulp-zip'),
+  del = require('del'),
+  install = require('gulp-install'),
+  awsLambda = require('node-aws-lambda'),
+  envify = require('gulp-envify'),
+  path = require('path');
 
 module.exports = function(gulp) {
 
@@ -13,14 +13,15 @@ module.exports = function(gulp) {
   });
 
   gulp.task('js', function() {
-    return gulp.src('index.js')
+    return gulp.src(['src/**/*', '!src/**/*.spec.js'])
+      .pipe(envify(process.env))
       .pipe(gulp.dest('dist/'));
   });
 
   gulp.task('node-mods', function() {
     return gulp.src('./package.json')
       .pipe(gulp.dest('dist/'))
-      .pipe(install({production: true}));
+      .pipe(install({ production: true }));
   });
 
   gulp.task('zip', function() {
@@ -30,7 +31,7 @@ module.exports = function(gulp) {
   });
 
   gulp.task('upload', function(callback) {
-    awsLambda.deploy('./dist.zip', require( path.join(process.cwd(), "lambda-config.js") ), callback);
+    awsLambda.deploy('./dist.zip', require(path.join(process.cwd(), "lambda-config.js")), callback);
   });
 
 };

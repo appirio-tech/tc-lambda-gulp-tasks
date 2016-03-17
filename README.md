@@ -29,16 +29,15 @@ gulp.task('deploy', function(callback) {
 lambda-config.js :
 ````js
 module.exports = {
-  accessKeyId: <access key id>,  // optional
-  secretAccessKey: <secret access key>,  // optional
-  profile: <shared credentials profile name>, // optional for loading AWS credentials from custom profile
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: 'us-east-1',
   handler: 'index.handler',
-  role: <role arn>,
+  role: process.env.AWS_LABMDA_ARN,
   functionName: <function name>,
   timeout: 10,
   memorySize: 128,
-  eventSource: {
+  eventSource: { // optional
     EventSourceArn: <event source such as kinesis ARN>,
     BatchSize: 200,
     StartingPosition: "TRIM_HORIZON"
