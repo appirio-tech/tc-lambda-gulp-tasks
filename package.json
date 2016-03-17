@@ -1,6 +1,6 @@
 {
   "name": "tc-lambda-gulp-tasks",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Topcoder Gulp tasks to deploy AWS lambdas",
   "main": "index.js",
   "repository": {
