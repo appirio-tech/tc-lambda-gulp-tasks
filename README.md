@@ -33,7 +33,7 @@ module.exports = {
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: 'us-east-1',
   handler: 'index.handler',
-  role: process.env.AWS_LABMDA_ARN,
+  role: process.env.AWS_LABMDA_ROLE_ARN,
   functionName: <function name>,
   timeout: 10,
   memorySize: 128,
