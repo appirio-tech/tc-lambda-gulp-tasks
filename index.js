@@ -36,13 +36,12 @@ module.exports = function(gulp) {
     gulp.task('upload', function(callback) {
         var packageDefinition = require(path.join(process.cwd(), './package.json'))
         var lambdaConfig = packageDefinition.lambda;
-        console.log('arn:aws:iam::' + process.env.AWS_ACCOUNT_ID + ':role/' + (packageDefinition.lambda.role || 'aws-lambda-default'))
         // set defaults
         _.defaultsDeep(lambdaConfig, {
             region: 'us-east-1',
             handler: 'index.handler',
             description: "",
-            role: 'arn:aws:iam::' + process.env.AWS_ACCOUNT_ID + ':role/' + (packageDefinition.lambda.role || 'aws-lambda-default'),
+            role: 'arn:aws:iam::' + process.env.AWS_ACCOUNT_ID + ':role/' + (packageDefinition.lambda.roleName || 'aws-lambda-default'),
             timeout: 180,
             memorySize: 512
         });
