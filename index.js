@@ -35,7 +35,6 @@ module.exports = function(gulp) {
 
     gulp.task('upload', function(callback) {
         var packageDefinition = require(path.join(process.cwd(), './package.json'))
-
         var lambdaConfig = packageDefinition.lambda;
         // set defaults
         _.defaultsDeep(lambdaConfig, {
