@@ -36,6 +36,7 @@ module.exports = function(gulp) {
     gulp.task('upload', function(callback) {
         var packageDefinition = require(path.join(process.cwd(), './package.json'))
         var lambdaConfig = packageDefinition.lambda;
+        console.log('arn:aws:iam::' + process.env.AWS_ACCOUNT_ID + ':role/' + (packageDefinition.lambda.role || 'aws-lambda-default'))
         // set defaults
         _.defaultsDeep(lambdaConfig, {
             region: 'us-east-1',
@@ -50,7 +51,4 @@ module.exports = function(gulp) {
             './dist.zip', lambdaConfig,
             callback);
     });
-
-
-
 };
